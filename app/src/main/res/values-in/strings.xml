@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="count_up">+</string>
-    <string name="count_down">-</string>
+    <string name="img">Gambar %1$s</string>
+    <string name="next">Lanjut</string>
 </resources>

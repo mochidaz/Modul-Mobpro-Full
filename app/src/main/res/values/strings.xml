@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="count_up">+</string>
-    <string name="count_down">-</string>
+    <string name="img">Image %1$s</string>
+    <string name="next">Next</string>
 </resources>

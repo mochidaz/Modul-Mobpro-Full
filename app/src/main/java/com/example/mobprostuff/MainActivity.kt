@@ -14,12 +14,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mobprostuff.ui.theme.MobProStuffTheme
 
 class MainActivity : ComponentActivity() {
+    private val data = getData()
+    private var index by mutableIntStateOf(0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,10 +33,21 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Counter()
+                    Gallery(data[index]) {
+                        index = (index + 1) % data.size
+                    }
                 }
             }
         }
+    }
+
+    private fun getData() : List<Sprite> {
+        return listOf(
+            Sprite("Erika", R.drawable.erika),
+            Sprite("Bernkastel", R.drawable.bernkastel),
+            Sprite("Lambdadelta", R.drawable.lambdadelta),
+        )
+
     }
 }
 
@@ -57,5 +73,5 @@ fun MainScreen(content: @Composable (Modifier) -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ScreenPreview() {
-    Counter()
+    Gallery(sprite = Sprite("Erika", R.drawable.erika))
 }
