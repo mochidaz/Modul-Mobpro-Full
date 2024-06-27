@@ -39,7 +39,7 @@ fun Gallery(sprite: Sprite, onClick: () -> Unit = {}) {
 
             Text(
                 text = sprite.name,
-                style = MaterialTheme.typography.headlineLarge,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(top = 16.dp)
             )
 
@@ -50,7 +50,7 @@ fun Gallery(sprite: Sprite, onClick: () -> Unit = {}) {
                     .padding(top = 24.dp),
                 contentPadding = PaddingValues(16.dp)
             ) {
-                Text(text = stringResource(R.string.next))
+                Text(text = stringResource(R.string.troll))
             }
         }
     }

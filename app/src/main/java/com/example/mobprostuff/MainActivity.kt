@@ -43,9 +43,8 @@ class MainActivity : ComponentActivity() {
 
     private fun getData() : List<Sprite> {
         return listOf(
-            Sprite("Erika", R.drawable.erika),
-            Sprite("Bernkastel", R.drawable.bernkastel),
-            Sprite("Lambdadelta", R.drawable.lambdadelta),
+            Sprite("Namaku Furudo Erika...", R.drawable.erikasmile),
+            Sprite("<Oh Yeahhhhh!> <Very Gooooooood!>", R.drawable.erikagood),
         )
 
     }
@@ -73,5 +72,5 @@ fun MainScreen(content: @Composable (Modifier) -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ScreenPreview() {
-    Gallery(sprite = Sprite("Erika", R.drawable.erika))
+    Gallery(sprite = Sprite("Namaku Furudo Erika...", R.drawable.erikasmile))
 }
