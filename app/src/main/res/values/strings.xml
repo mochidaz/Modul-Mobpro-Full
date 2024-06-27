@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MobProStuff</string>
+    <string name="count_up">+</string>
+    <string name="count_down">-</string>
+</resources>
