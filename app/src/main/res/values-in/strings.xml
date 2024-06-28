@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="bmi_intro">BMI atau Body Mass Index merupakan cara menentukan berat badan ideal atau tidak. Cobalah!</string>
-    <string name="bmi_weight">Berat</string>
-    <string name="bmi_height">Tinggi</string>
-    <string name="bmi_calculate">Hitung</string>
-    <string name="male">Laki-laki</string>
-    <string name="female">Perempuan</string>
+    <string name="dp_intro">Dot Product adalah operasi aljabar untuk dua vektor dengan dimensi yang sama, untuk menghasilkan skalar.</string>
+    <string name="dp_vector_a">Vektor A</string>
+    <string name="dp_vector_b">Vektor B</string>
 
-    <string name="bmi_x">BMI: %1$.2f</string>
-    <string name="underweight">Kurus</string>
-    <string name="ideal">Ideal</string>
-    <string name="overweight">Gemuk</string>
+    <string name="dp_calculate">Hitung</string>
+    <string name="dp_result">Hasil</string>
 
-    <string name="bmi_weight_error">Berat tidak bisa kosong atau 0</string>
-    <string name="bmi_height_error">Tinggi tidak bisa kosong atau 0</string>
+    <string name="dp_x">Dot Product: %1$.2f</string>
+
+    <string name="dp_vector_error">Vektor tidak boleh kosong atau bernilai 0.</string>
+    <string name="dp_vector_not_equal_error">Vektor A dan B harus memiliki dimensi yang sama.</string>
+    <string name="dp_vector_invalid_input_error">Vektor harus merupakan input yang valid.</string>
 </resources>

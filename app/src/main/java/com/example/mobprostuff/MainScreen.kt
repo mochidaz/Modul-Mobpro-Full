@@ -56,25 +56,24 @@ fun MainScreen() {
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier) {
-    var weight by remember { mutableStateOf("") }
-    var height by remember { mutableStateOf("") }
-
-    val radioOptions = listOf(
-        stringResource(id = R.string.male),
-        stringResource(id = R.string.female)
-    )
-
-    var gender by remember { mutableStateOf(radioOptions[0]) }
-
-    var bmi by remember { mutableStateOf(0f) }
-    var category by remember { mutableStateOf(0) }
-
-    var weightErr by remember {
-        mutableStateOf(false)
+    var vectorA by remember {
+        mutableStateOf("")
     }
 
-    var heightErr by remember {
-        mutableStateOf(false)
+    var vectorB by remember {
+        mutableStateOf("")
+    }
+
+    var vecAErr: Errors? by remember {
+        mutableStateOf(null)
+    }
+
+    var vecBErr: Errors? by remember {
+        mutableStateOf(null)
+    }
+
+    var dotProduct: Float? by remember {
+        mutableStateOf(null)
     }
 
     Column (
@@ -86,17 +85,17 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = R.string.bmi_intro),
+            text = stringResource(id = R.string.dp_intro),
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
 
         OutlinedTextField(
-            value = weight,
-            onValueChange = { weight = it },
-            label = { Text(text = stringResource(id = R.string.bmi_weight)) },
-            trailingIcon = { IconPicker(weightErr, "kg") },
-            supportingText = { ErrorHint(weightErr, stringResource(id = R.string.bmi_weight_error)) },
+            value = vectorA,
+            onValueChange = { vectorA = it },
+            label = { Text(text = stringResource(id = R.string.dp_vector_a)) },
+            trailingIcon = { IconPicker(vecAErr) },
+            supportingText = { ErrorHint(vecAErr) },
             singleLine = true,
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
@@ -106,11 +105,11 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         )
 
         OutlinedTextField(
-            value = height,
-            onValueChange = { height = it },
-            label = { Text(text = stringResource(id = R.string.bmi_height)) },
-            trailingIcon = { IconPicker(heightErr, "cm") },
-            supportingText = { ErrorHint(heightErr, stringResource(id = R.string.bmi_height_error)) },
+            value = vectorB,
+            onValueChange = { vectorB = it },
+            label = { Text(text = stringResource(id = R.string.dp_vector_b)) },
+            trailingIcon = { IconPicker(vecBErr) },
+            supportingText = { ErrorHint(vecBErr) },
             singleLine = true,
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Number,
@@ -119,78 +118,45 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
 
-        Row (
-            modifier = Modifier
-                .padding(top = 6.dp)
-                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-        ) {
-            radioOptions.forEach {
-                text ->
-                GenderOption(
-                    label = text,
-                    isSelected = gender == text,
-                    modifier = Modifier
-                        .selectable(
-                            selected = gender == text,
-                            onClick = {
-                                gender = text
-                            },
-                            role = Role.RadioButton
-                        )
-                        .weight(1f)
-                        .padding(16.dp),
-                    )
-            }
-        }
-
         Button(
             onClick = {
-                weightErr = weight.isEmpty() || weight.toFloat() == 0f || weight.toDoubleOrNull() == null
-                heightErr = height.isEmpty() || height.toFloat() == 0f || height.toDoubleOrNull() == null
+                vecAErr = validateInput(vectorA)
+                vecBErr = validateInput(vectorB)
 
-                if (weightErr || heightErr) {
+                if (vecAErr != null || vecBErr != null) {
                     return@Button
                 }
 
-                bmi = calculateBMI(weight.toFloat(), height.toFloat())
-                category = getCategory(bmi, gender == radioOptions[0])
+                vecAErr = isDimEqual(vectorA, vectorB)
+                vecBErr = isDimEqual(vectorA, vectorB)
+
+                if (vecAErr != null || vecBErr != null) {
+                    return@Button
+                }
+
+                val vecA = deserializeInput(vectorA)
+                val vecB = deserializeInput(vectorB)
+
+                dotProduct = calculateDotProduct(vecA, vecB)
+                vecAErr = null
+                vecBErr = null
             },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal=32.dp, vertical=16.dp),
         ) {
-            Text(text = stringResource(id = R.string.bmi_calculate))
+            Text(text = stringResource(id = R.string.dp_calculate))
         }
 
-        if (bmi != 0f) {
+        if (dotProduct != null) {
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 thickness = 1.dp
             )
 
             Text(
-                text = stringResource(id = R.string.bmi_x, bmi),
+                text = stringResource(id = R.string.dp_x, dotProduct!!),
                 style = MaterialTheme.typography.titleLarge
             )
-
-            Text(
-                text = stringResource(category).uppercase(),
-                style = MaterialTheme.typography.headlineLarge
-            )
         }
-    }
-}
-
-@Composable
-fun GenderOption(label: String, isSelected: Boolean, modifier: Modifier) {
-    Row (
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RadioButton(selected = isSelected, onClick = null)
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(start = 8.dp)
-        )
     }
 }

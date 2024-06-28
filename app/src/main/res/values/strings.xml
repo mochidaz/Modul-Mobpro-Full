@@ -1,17 +1,15 @@
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="bmi_intro">BMI, or Body Mass Index, is a number calculated from a person\'s weight and height. Try it now!</string>
-    <string name="bmi_weight">Weight</string>
-    <string name="bmi_height">Height</string>
-    <string name="bmi_calculate">Calculate</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
+    <string name="dp_intro">Dot Product is an algebra operation for two vectors with the same dimension, to produce a scalar.</string>
+    <string name="dp_vector_a">Vector A</string>
+    <string name="dp_vector_b">Vector B</string>
 
-    <string name="bmi_x">BMI: %1$.2f</string>
-    <string name="underweight">Underweight</string>
-    <string name="ideal">Ideal</string>
-    <string name="overweight">Overweight</string>
-    
-    <string name="bmi_weight_error">Weight cannot be empty or 0</string>
-    <string name="bmi_height_error">Height cannot be empty or 0</string>
+    <string name="dp_calculate">Calculate</string>
+    <string name="dp_result">Result</string>
+
+    <string name="dp_x">Dot Product: %1$.2f</string>
+
+    <string name="dp_vector_error">Vector cannot be empty or 0.</string>
+    <string name="dp_vector_not_equal_error">Vector A and B must have the same dimension.</string>
+    <string name="dp_vector_invalid_input_error">Vector must have valid input.</string>
 </resources>
