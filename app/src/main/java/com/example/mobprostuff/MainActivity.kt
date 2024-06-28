@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.mobprostuff.ui.theme.MobProStuffTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    SetupNavGraph()
                 }
             }
         }
@@ -41,6 +42,15 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun ScreenPreview() {
-    MainScreen()
+fun MainScreenPreview() {
+    MainScreen(rememberNavController())
 }
+
+@Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+fun ExplanationScreenPreview() {
+    ExplanationScreen(rememberNavController())
+}
+
+

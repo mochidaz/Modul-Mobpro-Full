@@ -1,5 +1,8 @@
 package com.example.mobprostuff
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
@@ -40,6 +43,17 @@ fun deserializeInput(input: String): Vector<Float> {
     }
 
     return vector
+}
+
+fun shareData(context: Context, message: String) {
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+
+    if (shareIntent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(shareIntent)
+    }
 }
 
 @Composable

@@ -11,9 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -25,20 +29,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
     Scaffold (
         topBar = {
             TopAppBar(
@@ -46,7 +53,18 @@ fun MainScreen() {
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
-                )
+                ),
+                actions = {
+                    IconButton(onClick = {
+                        navController.navigate(Screen.Explanation.route)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = stringResource(id = R.string.explanation_title),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
             )
         }
     ) {
@@ -56,25 +74,27 @@ fun MainScreen() {
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier) {
-    var vectorA by remember {
+    var vectorA by rememberSaveable {
         mutableStateOf("")
     }
 
-    var vectorB by remember {
+    var vectorB by rememberSaveable {
         mutableStateOf("")
     }
 
-    var vecAErr: Errors? by remember {
+    var vecAErr: Errors? by rememberSaveable {
         mutableStateOf(null)
     }
 
-    var vecBErr: Errors? by remember {
+    var vecBErr: Errors? by rememberSaveable {
         mutableStateOf(null)
     }
 
-    var dotProduct: Float? by remember {
+    var dotProduct: Float? by rememberSaveable {
         mutableStateOf(null)
     }
+
+    val context = LocalContext.current
 
     Column (
         modifier = modifier
@@ -157,6 +177,19 @@ fun ScreenContent(modifier: Modifier = Modifier) {
                 text = stringResource(id = R.string.dp_x, dotProduct!!),
                 style = MaterialTheme.typography.titleLarge
             )
+
+            Button(
+                onClick = {
+                    shareData(
+                        context = context,
+                        message = context.getString(R.string.share_template, vectorA, vectorB, dotProduct!!)
+                    )
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal=32.dp, vertical=16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.share))
+            }
         }
     }
 }
