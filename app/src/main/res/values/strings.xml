@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="img">Image %1$s</string>
-    <string name="troll">Troll</string>
+    <string name="bmi_intro">BMI, or Body Mass Index, is a number calculated from a person\'s weight and height. Try it now!</string>
+    <string name="bmi_weight">Weight</string>
+    <string name="bmi_height">Height</string>
+    <string name="bmi_calculate">Calculate</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <string name="bmi_x">BMI: %1$.2f</string>
+    <string name="underweight">Underweight</string>
+    <string name="ideal">Ideal</string>
+    <string name="overweight">Overweight</string>
+    
+    <string name="bmi_weight_error">Weight cannot be empty or 0</string>
+    <string name="bmi_height_error">Height cannot be empty or 0</string>
 </resources>

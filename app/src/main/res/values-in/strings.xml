@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="img">Gambar %1$s</string>
-    <string name="troll">Tipu</string>
+    <string name="bmi_intro">BMI atau Body Mass Index merupakan cara menentukan berat badan ideal atau tidak. Cobalah!</string>
+    <string name="bmi_weight">Berat</string>
+    <string name="bmi_height">Tinggi</string>
+    <string name="bmi_calculate">Hitung</string>
+    <string name="male">Laki-laki</string>
+    <string name="female">Perempuan</string>
+
+    <string name="bmi_x">BMI: %1$.2f</string>
+    <string name="underweight">Kurus</string>
+    <string name="ideal">Ideal</string>
+    <string name="overweight">Gemuk</string>
+
+    <string name="bmi_weight_error">Berat tidak bisa kosong atau 0</string>
+    <string name="bmi_height_error">Tinggi tidak bisa kosong atau 0</string>
 </resources>

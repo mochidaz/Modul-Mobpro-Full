@@ -23,8 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.mobprostuff.ui.theme.MobProStuffTheme
 
 class MainActivity : ComponentActivity() {
-    private val data = getData()
-    private var index by mutableIntStateOf(0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -33,44 +31,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Gallery(data[index]) {
-                        index = (index + 1) % data.size
-                    }
+                    MainScreen()
                 }
             }
         }
     }
-
-    private fun getData() : List<Sprite> {
-        return listOf(
-            Sprite("Namaku Furudo Erika...", R.drawable.erikasmile),
-            Sprite("<Oh Yeahhhhh!> <Very Gooooooood!>", R.drawable.erikagood),
-        )
-
-    }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MainScreen(content: @Composable (Modifier) -> Unit) {
-    Scaffold (
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(id = R.string.app_name)) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                )
-            )
-        }
-    ) {
-        padding -> content(Modifier.padding(padding))
-    }
-}
+
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ScreenPreview() {
-    Gallery(sprite = Sprite("Namaku Furudo Erika...", R.drawable.erikasmile))
+    MainScreen()
 }
