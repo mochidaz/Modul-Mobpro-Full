@@ -1,29 +1,23 @@
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="explanation_title">Dot Product Explanation</string>
-    <string name="dp_explanation">
-        The dot product, also known as the scalar product, is an operation that takes two equal-length sequences of numbers (usually vectors) and returns a single number. This operation multiplies corresponding elements of the vectors and sums the results. Mathematically, for two vectors a and b with components a_i and b_i, the dot product is defined as:
-        a · b = a1 * b1 + a2 * b2 + … + an * bn
-        Geometrically, the dot product of two vectors also equals the product of their magnitudes and the cosine of the angle between them:
-        a · b = |a| * |b| * cos(θ)
-        where |a| and |b| are the magnitudes of a and b, and θ is the angle between them. The dot product is widely used in physics, engineering, and computer graphics to project vectors, calculate angles, and determine orthogonality.
-    </string>
 
-    <string name="dp_intro">Dot Product is an algebra operation for two vectors with the same dimension, to produce a scalar.</string>
-    <string name="dp_vector_a">Vector A</string>
-    <string name="dp_vector_b">Vector B</string>
+    <string name="empty_list">No items to display</string>
 
-    <string name="dp_calculate">Calculate</string>
-    <string name="dp_result">Result</string>
+    <string name="student_detail">This is a student with the ID of %1$s, the name of %2$s, and the class of %3$s.</string>
 
-    <string name="dp_x">Dot Product: %1$.2f</string>
+    <string name="add_student">Add Student</string>
+    <string name="edit_student">Edit</string>
 
-    <string name="dp_vector_error">Vector cannot be empty or 0.</string>
-    <string name="dp_vector_not_equal_error">Vector A and B must have the same dimension.</string>
-    <string name="dp_vector_invalid_input_error">Vector must have valid input.</string>
+    <string name="label_id">ID</string>
+    <string name="label_name">Name</string>
+    <string name="label_class">Class</string>
 
     <string name="back">Back</string>
-    <string name="share">Share</string>
+    <string name="save">Save</string>
 
-    <string name="share_template">The dot product of vectors A (%1$s) and B (%2$s) is %3$.2f.</string>
+    <string name="invalid">ID, Name, and Class cannot be empty</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="other">Other</string>
 </resources>

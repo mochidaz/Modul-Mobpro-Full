@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MobProStuff</string>
-    <string name="explanation_title">Penjelasan Dot Product</string>
-    <string name="dp_intro">Dot Product adalah operasi aljabar untuk dua vektor dengan dimensi yang sama, untuk menghasilkan skalar.</string>
-    <string name="dp_explanation">
-    Dot product, juga dikenal sebagai perkalian skalar, adalah operasi yang mengambil dua urutan angka dengan panjang yang sama (biasanya vektor) dan menghasilkan satu angka. Operasi ini mengalikan elemen yang bersesuaian dari vektor-vektor tersebut dan menjumlahkan hasilnya. Secara matematis, untuk dua vektor a dan b dengan komponen a_i dan b_i, dot product didefinisikan sebagai:
-    a · b = a1 * b1 + a2 * b2 + … + an * bn
-    Secara geometris, dot product dari dua vektor juga sama dengan hasil kali magnitudo mereka dan kosinus sudut di antara mereka:
-    a · b = |a| * |b| * cos(θ)
-    di mana |a| dan |b| adalah magnitudo dari a dan b, dan θ adalah sudut di antara mereka. Dot product banyak digunakan dalam fisika, teknik, dan grafik komputer untuk memproyeksikan vektor, menghitung sudut, dan menentukan ortogonalitas.
-    </string>
 
-    <string name="dp_vector_a">Vektor A</string>
-    <string name="dp_vector_b">Vektor B</string>
+    <string name="empty_list">Tidak ada item yang bisa ditampilkan.</string>
 
-    <string name="dp_calculate">Hitung</string>
-    <string name="dp_result">Hasil</string>
+    <string name="student_detail">Ini adalah seorang murid dengan ID %1$s, nama %2$s, dan kelas %3$s.</string>
 
-    <string name="dp_x">Dot Product: %1$.2f</string>
+    <string name="add_student">Tambah Murid</string>
+    <string name="edit_student">Ubah Murid</string>
 
-    <string name="dp_vector_error">Vektor tidak boleh kosong atau bernilai 0.</string>
-    <string name="dp_vector_not_equal_error">Vektor A dan B harus memiliki dimensi yang sama.</string>
-    <string name="dp_vector_invalid_input_error">Vektor harus merupakan input yang valid.</string>
+    <string name="label_id">NIM</string>
+    <string name="label_name">Nama</string>
+    <string name="label_class">Kelas</string>
 
     <string name="back">Kembali</string>
-    <string name="share">Bagikan</string>
+    <string name="save">Simpan</string>
 
-    <string name="share_template">Dot Product dari vektor A (%1$s) dan B (%2$s) adalah %3$.2f.</string>
+    <string name="invalid">NIM, Nama, dan Kelas tidak bisa kosong</string>
+
+    <string name="delete">Hapus</string>
+
+    <string name="other">Lainnya</string>
 </resources>
