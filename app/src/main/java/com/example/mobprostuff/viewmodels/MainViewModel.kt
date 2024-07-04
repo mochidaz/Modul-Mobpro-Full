@@ -90,7 +90,7 @@ class MainViewModel : ViewModel() {
                     Log.d("MainViewModel", "Track: $track")
                     newResults.add(track)
                 }
-                _searchResults.value = _searchResults.value + newResults
+                _searchResults.value = newResults
             }
         } catch (e: Exception) {
             val errorMessage = "Parsing error: ${e.message}"
