@@ -2,6 +2,7 @@ package com.example.mobprostuff.ui.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,6 +42,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -61,6 +63,8 @@ import com.example.mobprostuff.model.Track
 import com.example.mobprostuff.network.NazrinAPI
 import com.example.mobprostuff.viewmodels.MainViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.example.mobprostuff.R
 import com.example.mobprostuff.utils.SettingsDataStore
 import kotlinx.coroutines.CoroutineScope
@@ -124,10 +128,15 @@ fun ResultScreen(navController: NavHostController, url: String? = null, searchQu
                 modifier = Modifier
                     .height(100.dp)
                     .fillMaxWidth(),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 if (isLoading) {
-                    Text(text = stringResource(id = R.string.searching))
+                    Column {
+                        Text(text = stringResource(id = R.string.searching))
+                        CircularProgressIndicator(
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }
                 } else {
                     Text(text = stringResource(id = R.string.search_done, searchResults.size))
                 }
@@ -177,13 +186,43 @@ fun ItemList(data: List<Track>) {
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     track.albumImg?.let {
-                        AsyncImage(
+                        val painter = rememberAsyncImagePainter(
                             model = ImageRequest.Builder(LocalContext.current)
                                 .data(it)
-                                .build(),
-                            contentDescription = "Album Image",
-                            modifier = Modifier.fillMaxWidth()
+                                .build()
                         )
+                        val painterState = painter.state
+
+                        Box {
+                            Image(
+                                painter = painter,
+                                contentDescription = "Album Image",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(120.dp)
+                                    .clip(RoundedCornerShape(4.dp)),
+                            )
+
+                            when (painterState) {
+                                is AsyncImagePainter.State.Loading -> {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.align(Alignment.Center)
+                                    )
+                                }
+                                is AsyncImagePainter.State.Error -> {
+                                    Image(
+                                        painter = painterResource(R.drawable.baseline_broken_image_24), // Replace with your error drawable
+                                        contentDescription = "Error Image",
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(120.dp)
+                                            .clip(RoundedCornerShape(4.dp)),
+                                        contentScale = ContentScale.Crop
+                                    )
+                                }
+                                else -> Unit
+                            }
+                        }
                     }
                     track.album?.let { Text(text = "Album: $it", fontWeight = FontWeight.Bold) }
                     track.trackNumber?.let { Text(text = "Track Number: $it") }
@@ -228,18 +267,46 @@ fun ItemGrid(data: List<Track>) {
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
                     track.albumImg?.let {
-                        AsyncImage(
+                        val painter = rememberAsyncImagePainter(
                             model = ImageRequest.Builder(LocalContext.current)
                                 .data(it)
-                                .build(),
-                            contentDescription = "Album Image",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(120.dp)
-                                .clip(RoundedCornerShape(4.dp)),
-                            contentScale = ContentScale.Crop
+                                .build()
                         )
+                        val painterState = painter.state
+
+                        Box {
+                            Image(
+                                painter = painter,
+                                contentDescription = "Album Image",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(120.dp)
+                                    .clip(RoundedCornerShape(4.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+
+                            when (painterState) {
+                                is AsyncImagePainter.State.Loading -> {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.align(Alignment.Center)
+                                    )
+                                }
+                                is AsyncImagePainter.State.Error -> {
+                                    Image(
+                                        painter = painterResource(R.drawable.baseline_broken_image_24), // Replace with your error drawable
+                                        contentDescription = "Error Image",
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(120.dp)
+                                            .clip(RoundedCornerShape(4.dp)),
+                                        contentScale = ContentScale.Crop
+                                    )
+                                }
+                                else -> Unit
+                            }
+                        }
                     }
+
                     track.album?.let {
                         Text(text = "Album: $it", fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     }
