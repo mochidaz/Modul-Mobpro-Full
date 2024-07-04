@@ -7,9 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.mobprostuff.ui.screen.DetailScreen
-import com.example.mobprostuff.ui.screen.KEY_STUDENT_ID
 import com.example.mobprostuff.ui.screen.MainScreen
+import com.example.mobprostuff.ui.screen.ResultScreen
 import com.example.mobprostuff.ui.screen.Screen
 
 @Composable
@@ -21,19 +20,17 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
         composable(route = Screen.Home.route) {
             MainScreen(navController)
         }
-        composable(route = Screen.DetailNewForm.route) {
-            DetailScreen(navController)
-        }
         composable(
-            route = Screen.DetailEditForm.route,
-            arguments = listOf(navArgument(KEY_STUDENT_ID) {
-                type = NavType.StringType
-            }),
-
+            route = Screen.Result.route,
+            arguments = listOf(
+                navArgument("url") { type = NavType.StringType },
+                navArgument("searchQuery") { type = NavType.StringType }
+            )
         ) {
-            navBackStackEntry ->
-            val id = navBackStackEntry.arguments?.getString(KEY_STUDENT_ID)
-            DetailScreen(navController, id)
+            backStackEntry ->
+            val url = backStackEntry.arguments?.getString("url")
+            val searchQuery = backStackEntry.arguments?.getString("searchQuery")
+            ResultScreen(navController, url, searchQuery)
         }
     }
 }

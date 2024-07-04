@@ -30,4 +30,14 @@
 
     <string name="list">Tampilan List</string>
     <string name="grid">Tampilan Grid</string>
+
+    <string name="result_title">Hasil Pencarian</string>
+
+    <string name="searching">Mencari…</string>
+
+    <string name="search_done">Pencarian Selesai. Ditemukan %1$d hasil.</string>
+
+    <string name="submit">Cari</string>
+
+    <string name="not_found">Tidak Ditemukan</string>
 </resources>

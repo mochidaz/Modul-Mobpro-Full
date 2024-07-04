@@ -29,4 +29,14 @@
 
     <string name="list">List View</string>
     <string name="grid">Grid View</string>
+
+    <string name="result_title">Search Results</string>
+
+    <string name="searching">Searching…</string>
+
+    <string name="search_done">Search Completed. Found %1$d results.</string>
+
+    <string name="submit">Search</string>
+
+    <string name="not_found">Not Found</string>
 </resources>
