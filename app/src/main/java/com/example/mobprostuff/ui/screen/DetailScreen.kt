@@ -62,6 +62,8 @@ fun DetailScreen(navController: NavHostController, id: String? = null) {
 
     var action by remember { mutableStateOf(Action.ADD) }
 
+    var showDialog by remember { mutableStateOf(false) }
+
     LaunchedEffect(true) {
         if (studentId == null) {
             return@LaunchedEffect
@@ -119,7 +121,12 @@ fun DetailScreen(navController: NavHostController, id: String? = null) {
                     }
                     studentId?.let {
                         DeleteAction {
-                            viewModel.deleteStudent(it)
+                            showDialog = true
+                        }
+                        DisplayAlertDialog(
+                            openDialog = showDialog,
+                            onDismissRequest = { showDialog = false }) {
+                            viewModel.deleteStudent(studentId!!)
                             navController.popBackStack()
                         }
                     }

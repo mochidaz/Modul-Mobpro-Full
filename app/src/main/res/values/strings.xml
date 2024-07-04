@@ -20,4 +20,13 @@
     <string name="delete">Delete</string>
 
     <string name="other">Other</string>
+
+    <string name="del_message">Delete this student?</string>
+
+    <string name="confirm_delete">Confirm Delete</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="list">List View</string>
+    <string name="grid">Grid View</string>
 </resources>

@@ -21,4 +21,13 @@
     <string name="delete">Hapus</string>
 
     <string name="other">Lainnya</string>
+
+    <string name="del_message">Hapus siswa ini?</string>
+
+    <string name="confirm_delete">Konfirmasi Hapus</string>
+
+    <string name="cancel">Batal</string>
+
+    <string name="list">Tampilan List</string>
+    <string name="grid">Tampilan Grid</string>
 </resources>
