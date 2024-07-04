@@ -89,8 +89,8 @@ class MainViewModel : ViewModel() {
                     val track = Gson().fromJson(dataJson, Track::class.java)
                     Log.d("MainViewModel", "Track: $track")
                     newResults.add(track)
+                    _searchResults.value = newResults.toList()
                 }
-                _searchResults.value = newResults
             }
         } catch (e: Exception) {
             val errorMessage = "Parsing error: ${e.message}"
