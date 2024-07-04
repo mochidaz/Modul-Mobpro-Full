@@ -44,19 +44,6 @@ fun MainScreen(navController: NavHostController) {
                 ),
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(R.string.add_student),
-                    tint = MaterialTheme.colorScheme.primary
-                )
-            }
-        }
     ) { padding ->
         ScreenContent(navController, Modifier.padding(padding))
     }
