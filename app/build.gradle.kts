@@ -73,6 +73,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.3")
     implementation("androidx.compose.runtime:runtime-livedata:1.6.8")
     implementation("androidx.compose.material3:material3-android:1.2.1")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
