@@ -40,4 +40,12 @@
     <string name="submit">Cari</string>
 
     <string name="not_found">Tidak Ditemukan</string>
+
+    <string name="profile">Profil</string>
+
+    <string name="close">Tutup</string>
+
+    <string name="logout">Keluar</string>
+
+    <string name="no_credentials">Tidak ada kredensial di akun anda. Masuk ke satu akun google.</string>
 </resources>

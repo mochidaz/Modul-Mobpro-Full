@@ -1,6 +1,9 @@
 package com.example.mobprostuff.ui.screen
 
+import android.os.Build
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -22,16 +25,32 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.mobprostuff.R
+import com.example.mobprostuff.auth.signIn
+import com.example.mobprostuff.auth.signOut
 import com.example.mobprostuff.model.Track
+import com.example.mobprostuff.model.User
 import com.example.mobprostuff.network.NazrinAPI
+import com.example.mobprostuff.network.UserDataStore
 import com.example.mobprostuff.utils.SettingsDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val context = LocalContext.current
+
+    val dataStore = UserDataStore(context)
+
+    val user by dataStore.userFlow.collectAsState(User())
+
+    var showDialog by remember {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -42,10 +61,46 @@ fun MainScreen(navController: NavHostController) {
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
+                actions = {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            if (user.userEmail.isEmpty()) {
+                                try {
+                                    signIn(context, dataStore)
+                                } catch (e: Exception) {
+                                    withContext(Dispatchers.Main) {
+                                        Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            } else {
+                                showDialog = true
+                            }
+                        }
+                    }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_account_circle_24),
+                            contentDescription = stringResource(id = R.string.profile),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
             )
         },
     ) { padding ->
         ScreenContent(navController, Modifier.padding(padding))
+
+        if (showDialog) {
+            ProfileDialog(user = user, onDismissRequest = { showDialog = false }) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    signOut(context, dataStore)
+
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Signed out", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                showDialog = false
+            }
+        }
     }
 }
 

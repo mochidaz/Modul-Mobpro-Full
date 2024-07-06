@@ -39,4 +39,12 @@
     <string name="submit">Search</string>
 
     <string name="not_found">Not Found</string>
+
+    <string name="profile">Profile</string>
+
+    <string name="close">Close</string>
+
+    <string name="logout">Logout</string>
+
+    <string name="no_credentials">No credentials on your phone. Log in to a google account.</string>
 </resources>
