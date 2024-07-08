@@ -104,6 +104,16 @@ fun MainScreen(navController: NavHostController) {
                 ),
                 actions = {
                     IconButton(onClick = {
+                        viewModel.fetchCharacters()
+                    }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_refresh_24),
+                            contentDescription = "Refresh",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+
+                    IconButton(onClick = {
                         CoroutineScope(Dispatchers.IO).launch {
                             if (user.userEmail.isEmpty()) {
                                 try {
@@ -218,7 +228,7 @@ fun ScreenContent(viewModel: MainViewModel, modifier: Modifier = Modifier, bitma
                 viewModel.fetchCharacters()
                 bitmap.value = null
                 viewModel.clearError()
-            }) {
+            }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 Text(text = "Retry")
             }
         } else {
