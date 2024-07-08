@@ -1,5 +1,7 @@
 package com.example.mobprostuff
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -8,9 +10,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.mobprostuff.ui.screen.MainScreen
-import com.example.mobprostuff.ui.screen.ResultScreen
 import com.example.mobprostuff.ui.screen.Screen
 
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @Composable
 fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
     NavHost(
@@ -30,7 +32,6 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
             backStackEntry ->
             val url = backStackEntry.arguments?.getString("url")
             val searchQuery = backStackEntry.arguments?.getString("searchQuery")
-            ResultScreen(navController, url, searchQuery)
         }
     }
 }

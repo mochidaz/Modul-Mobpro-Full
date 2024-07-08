@@ -47,4 +47,9 @@
     <string name="logout">Logout</string>
 
     <string name="no_credentials">No credentials on your phone. Log in to a google account.</string>
+
+    <string name="name">Name</string>
+
+    <string name="description">Description</string>
+
 </resources>

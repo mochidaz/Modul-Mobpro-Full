@@ -48,4 +48,8 @@
     <string name="logout">Keluar</string>
 
     <string name="no_credentials">Tidak ada kredensial di akun anda. Masuk ke satu akun google.</string>
+
+    <string name="name">Nama</string>
+
+    <string name="description">Deskripsi</string>
 </resources>
